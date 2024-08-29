@@ -1,0 +1,280 @@
+Concepts of Operating System 
+                                    Assignment 1 
+Problem 1: Read the instructions carefully and answer accordingly. If there is 
+any need to insert some data then do that as well. 
+
+a) Navigate and List:
+a. Start by navigating to your home directory and list its contents. Then, move into a 
+directory named "LinuxAssignment" if it exists; otherwise, create it. 
+
+cdac@DESKTOP-4IG5OR6:~$ pwd
+/home/cdac
+cdac@DESKTOP-4IG5OR6:~$ mkdir LinuxAssignment
+cdac@DESKTOP-4IG5OR6:~$ ls
+LinuxAssignment
+
+
+
+b) File Management:
+a. Inside the "LinuxAssignment" directory, create a new file named "file1.txt". Display its 
+contents. 
+cdac@DESKTOP-4IG5OR6:~$ cd LinuxAssignment
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ nano file1.txt
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ cat file1.txt
+Prathmesh Sonawane
+8805873173
+old sangvi pune
+
+
+
+c) Directory Management:
+a. Create a new directory named "docs" inside the "LinuxAssignment" directory. 
+
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ mkdir docs
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ ls
+docs  file1.txt
+
+
+d) Copy and Move Files:
+a. Copy the "file1.txt" file into the "docs" directory and rename it to "file2.txt".
+ 
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ ls
+docs  file1.txt
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ cp file1.txt docs
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ cd docs/
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment/docs$ ls
+file1.txt
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment/docs$ mv file1.txt file2.txt
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment/docs$ ls
+file2.txt
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment/docs$ cat file2.txt
+Prathmesh Sonawane
+8805873173
+old sangvi pune
+
+
+e) Permissions and Ownership:
+a. Change the permissions of "file2.txt" to allow read, write, and execute permissions for 
+the owner and only read permissions for others. Then, change the owner of "file2.txt" to 
+the current user. 
+
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment/docs$ chmod u+wx file2.txt
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment/docs$ ls -l
+total 4
+-rwxrw-r-- 1 cdac cdac 46 Aug 28 22:49 file2.txt
+
+1.Create new user-:
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment/docs$ sudo adduser user2
+[sudo] password for cdac:
+Adding user `user2' ...
+Adding new group `user2' (1002) ...
+Adding new user `user2' (1002) with group `user2' ...
+Creating home directory `/home/user2' ...
+Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for user2
+Enter the new value, or press ENTER for the default
+        Full Name []: user2
+        Room Number []: 201
+        Work Phone []: 858565879
+        Home Phone []: 25588779
+        Other []: 51898/
+Is the information correct? [Y/n] y
+
+2.Change the owner of file-:
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment/docs$ sudo chown user2 file2.txt
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment/docs$ ls -l
+total 4
+-rwxrw-r-- 1 user2 cdac 46 Aug 28 22:49 file2.txt
+
+
+
+3.switch the user1-:
+
+cdac@DESKTOP-4IG5OR6:~$ cd /etc/
+cdac@DESKTOP-4IG5OR6:/etc$ ls
+
+cdac@DESKTOP-4IG5OR6:/etc$ sudo nano sudoers
+[sudo] password for cdac:
+cdac@DESKTOP-4IG5OR6:/etc$ sudo ls
+
+cdac@DESKTOP-4IG5OR6:/etc$ cd
+cdac@DESKTOP-4IG5OR6:~$ sudo ls
+LinuxAssignment
+cdac@DESKTOP-4IG5OR6:~$ su user2
+Password:
+user2@DESKTOP-4IG5OR6:/home/cdac$ sudo ls
+[sudo] password for user2:
+LinuxAssignment
+
+
+
+
+
+	f) Final Checklist:
+	a. Finally, list the contents of the "LinuxAssignment" directory and the root directory to 
+	ensure that all operations were performed correctly. 
+
+	cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ su user2
+	Password:
+
+	user1@DESKTOP-4IG5OR6:/home/cdac$ sudo ls
+	LinuxAssignment  docs  file1.txt  file2.txt
+
+
+	user2@DESKTOP-4IG5OR6:/home/cdac/LinuxAssignment$ cd docs/
+	user2@DESKTOP-4IG5OR6:/home/cdac/LinuxAssignment/docs$ sudo ls
+	file2.txt
+	user2@DESKTOP-4IG5OR6:/home/cdac/LinuxAssignment/docs$ cat file2.txt
+	Prathmesh Sonawane
+	8805873173
+	old sangvi pune
+	user2@DESKTOP-4IG5OR6:/home/cdac/LinuxAssignment/docs$ ls-l
+	ls-l: command not found
+	user2@DESKTOP-4IG5OR6:/home/cdac/LinuxAssignment/docs$ ls -l
+	total 4
+	-rwxrw-r-- 1 user2 cdac 46 Aug 28 22:49 file2.txt
+
+
+
+
+
+
+
+
+
+g) File Searching:
+a. Search for all files with the extension ".txt" in the current directory and its subdirectories.
+
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ find . -type f -name "*.txt"
+./docs/file2.txt
+./file1.txt
+
+ 
+b. Display lines containing a specific word in a file (provide a file name and the specific 
+word to search). 
+
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ grep -Rnw 'file1.txt' -e 'Prathmesh'
+1:Prathmesh Sonawane
+
+
+
+
+
+
+
+
+
+
+
+h) System Information:
+a. Display the current system date and time. 
+cdac@DESKTOP-4IG5OR6:~$ date
+Wed Aug 28 23:32:13 IST 2024
+
+i) Networking:
+a. Display the IP address of the system. 
+cdac@DESKTOP-4IG5OR6:~$ hostname
+DESKTOP-4IG5OR6
+cdac@DESKTOP-4IG5OR6:~$ hostname -I
+172.22.63.64
+
+b. Ping a remote server to check connectivity (provide a remote server address to ping). 
+cdac@DESKTOP-4IG5OR6:~$ hostname
+DESKTOP-4IG5OR6
+cdac@DESKTOP-4IG5OR6:~$ hostname -I
+172.22.63.64
+cdac@DESKTOP-4IG5OR6:~$ ping 172.22.63.64
+PING 172.22.63.64 (172.22.63.64) 56(84) bytes of data.
+64 bytes from 172.22.63.64: icmp_seq=1 ttl=64 time=0.052 ms
+64 bytes from 172.22.63.64: icmp_seq=2 ttl=64 time=0.041 ms
+64 bytes from 172.22.63.64: icmp_seq=3 ttl=64 time=0.041 ms
+64 bytes from 172.22.63.64: icmp_seq=4 ttl=64 time=0.041 ms
+64 bytes from 172.22.63.64: icmp_seq=5 ttl=64 time=0.043 ms
+64 bytes from 172.22.63.64: icmp_seq=6 ttl=64 time=0.044 ms
+64 bytes from 172.22.63.64: icmp_seq=7 ttl=64 time=0.041 ms
+64 bytes from 172.22.63.64: icmp_seq=8 ttl=64 time=0.041 ms
+64 bytes from 172.22.63.64: icmp_seq=9 ttl=64 time=0.040 ms
+64 bytes from 172.22.63.64: icmp_seq=10 ttl=64 time=0.044 ms
+64 bytes from 172.22.63.64: icmp_seq=11 ttl=64 time=0.040 ms
+64 bytes from 172.22.63.64: icmp_seq=12 ttl=64 time=0.043 ms
+64 bytes from 172.22.63.64: icmp_seq=13 ttl=64 time=0.042 ms
+64 bytes from 172.22.63.64: icmp_seq=14 ttl=64 time=0.059 ms
+64 bytes from 172.22.63.64: icmp_seq=15 ttl=64 time=0.042 ms
+64 bytes from 172.22.63.64: icmp_seq=16 ttl=64 time=0.042 ms
+64 bytes from 172.22.63.64: icmp_seq=17 ttl=64 time=0.042 ms
+64 bytes from 172.22.63.64: icmp_seq=18 ttl=64 time=0.040 ms
+64 bytes from 172.22.63.64: icmp_seq=19 ttl=64 time=0.037 ms
+^C
+--- 172.22.63.64 ping statistics ---
+19 packets transmitted, 19 received, 0% packet loss, time 18688ms
+rtt min/avg/max/mdev = 0.037/0.042/0.059/0.004 ms
+cdac@DESKTOP-4IG5OR6:~$
+
+
+
+
+j) File Compression:
+a. Compress the "docs" directory into a zip file.
+
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ zip docs.zip docs
+  adding: docs/ (stored 0%)
+
+b. Extract the contents of the zip file into a new directory. 
+
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ unzip docs.zip -d ./folder
+Archive:  docs.zip
+
+
+
+
+k) File Editing:
+a. Open the "file1.txt" file in a text editor and add some text to it. 
+
+
+b. Replace a specific word in the "file1.txt" file with another word (provide the original 
+word and the word to replace it with). 
+
+
+
+
+
+
+
+
+
+
+
+Problem 2: Read the instructions carefully and answer accordingly. If there is 
+any need to insert some data then do that as well. 
+
+
+a. Suppose you have a file named "data.txt" containing important information. Display the 
+first 10 lines of this file to quickly glance at its contents using a command.
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ head  file1.txt
+ 
+b. Now, to check the end of the file for any recent additions, display the last 5 lines of 
+"data.txt" using another command. 
+cdac@DESKTOP-4IG5OR6:~/LinuxAssignment$ tail -5 file1.txt
+
+
+c. In a file named "numbers.txt," there are a series of numbers. Display the first 15 lines of 
+this file to analyze the initial data set. 
+ head -15 file1.txt
+
+d. To focus on the last few numbers of the dataset, display the last 3 lines of "numbers.txt".
+tail -3 file1.txt
+ 
+e. Imagine you have a file named "input.txt" with text content. Use a command to translate 
+all lowercase letters to uppercase in "input.txt" and save the modified text in a new file 
+named "output.txt." 
+
+
+f. In a file named "duplicate.txt," there are several lines of text, some of which are 
+duplicates. Use a command to display only the unique lines from "duplicate.txt." 
+g. In a file named "fruit.txt," there is a list of fruits, but some fruits are repeated. Use a 
+command to display each unique fruit along with the count of its occurrences in 
+"fruit.txt." 
+
