@@ -1,0 +1,5 @@
+#Question 2: Declare a variable named "name" and assign the value "CDAC Mumbai" to it. Print the value of the variable.
+
+name="CDAC Mumbai"
+
+echo $name 

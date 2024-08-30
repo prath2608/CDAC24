@@ -1,0 +1,8 @@
+#Question 4: Write a shell script that performs addition of two numbers (e.g., 5 and 3) and prints the result.
+
+x=5
+y=3
+
+c=$[x+y]
+
+echo $c

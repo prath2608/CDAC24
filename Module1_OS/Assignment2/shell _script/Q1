@@ -1,0 +1,4 @@
+
+#Question 1: Write a shell script that prints "Hello, World!" to the terminal.
+
+echo "Hello, World"

@@ -1,0 +1,7 @@
+#Question 3: Write a shell script that takes a number as input from the user and prints it.
+
+echo "Enter a Number"
+
+read num
+
+echo $num

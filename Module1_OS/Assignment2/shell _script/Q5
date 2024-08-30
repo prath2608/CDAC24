@@ -1,0 +1,13 @@
+#Question 5: Write a shell script that takes a number as input and prints "Even" if it is even, otherwise prints "Odd".
+
+echo "Enter number"
+
+read num
+
+if [ $num%2==0 ]
+then
+	echo "$num is even" 
+
+else
+	echo "$num is odd"
+fi
