@@ -1,0 +1,167 @@
+SQL Exercise 5 
+
+
+1. Display the Supplier name and the Quantity sold.
+mysql> select supplier.sname , spj.qty from supplier , spj where supplier.s
+= spj.s;
++-------+-------+
+| sname | qty   |
++-------+-------+
+| Enna  |   100 |
+| suzi  |   500 |
+| King  |   800 |
+| black |  1000 |
+| bob   |  1800 |
+| King  |   900 |
+| suzi  | 10010 |
+| Enna  |  7500 |
++-------+-------+
+/**********************************************************/ 
+ 
+2. Display the Part name and Quantity sold. 
+
+mysql> select pname , qty from parts , spj where parts.p = spj.p;
++-------------+-------+
+| pname       | qty   |
++-------------+-------+
+| Fridge      |   100 |
+| Laptop      |   500 |
+| ply sheets  |   800 |
+| chair       |  1000 |
+| wire cables |  1800 |
+| Laptop      |   900 |
+| tv          | 10010 |
+| cloth       |  7500 |
++-------------+-------+
+/************************************************************/
+
+ 
+3. Display the Project name and Quantity sold. 
+mysql> select jname , qty from projects , spj where projects.j = spj.j;
++---------+-------+
+| jname   | qty   |
++---------+-------+
+| tesla   |   100 |
+| apple   |   500 |
+| amazon  |   800 |
+| Samsung |  1000 |
+| solar   |  1800 |
+| apple   |   900 |
+| amazon  | 10010 |
+| apple   |  7500 |
++---------+-------+
+/**********************************************************/
+ 
+4. Display the Supplier name, Part name, Project name and Quantity sold. 
+
+mysql>  select sname , pname,jname,qty from supplier a , parts b , projects c , spj d where d.s = a.s and d.p=b.p and d.j=c.j;
++-------+-------------+---------+-------+
+| sname | pname       | jname   | qty   |
++-------+-------------+---------+-------+
+| Enna  | Fridge      | tesla   |   100 |
+| suzi  | Laptop      | apple   |   500 |
+| King  | Laptop      | apple   |   900 |
+| bob   | wire cables | solar   |  1800 |
+| suzi  | tv          | amazon  | 10010 |
+| black | chair       | Samsung |  1000 |
+| Enna  | cloth       | apple   |  7500 |
+| King  | ply sheets  | amazon  |   800 |
++-------+-------------+---------+-------+
+
+/*********************************************************************/
+ 
+5. Display the Supplier name, Supplying Parts to a Project in the same City. 
+
+mysql> select sname , pname from supplier a, parts b, projects c where b.city = a.city and c.city=b.city;
++-------+-------------+
+| sname | pname       |
++-------+-------------+
+| suzi  | Fridge      |
+| Enna  | table       |
+| black | table       |
+| King  | Laptop      |
+| bob   | wire cables |
+| suzi  | tv          |
+| Enna  | chair       |
+| black | chair       |
+| King  | cloth       |
+| Enna  | ply sheets  |
+| black | ply sheets  |
++-------+-------------+ 
+ /***************************************************************************/
+6. Display the Part name that is ‘Red’ is color, and the Quantity sold. 
+mysql> select pname,qty from parts ,spj where parts.color = 'red' and parts.p = spj.p;
++-------------+------+
+| pname       | qty  |
++-------------+------+
+| wire cables | 1800 |
++-------------+------+
+/**********************************************************/
+ 
+7. Display all the Quantity sold by Suppliers with the Status = 20.
+mysql> select status , qty from supplier , spj where supplier.status=20 and supplier.s = spj.s;
++--------+------+
+| status | qty  |
++--------+------+
+|     20 |  100 |
+|     20 | 7500 |
++--------+------+
+
+or
+
+
+mysql> select status , sum(qty) from supplier , spj where supplier.status=20 and supplier.s = spj.s;
++--------+----------+
+| status | sum(qty) |
++--------+----------+
+|     20 |     7600 |
++--------+----------+
+
+
+/*****************************************************************/
+  
+8. Display all the Parts and Quantity with a Weight > 14. 
+
+mysql> select pname , qty from parts , spj where parts.weight > 14 and parts.p = spj.p;
++-------------+-------+
+| pname       | qty   |
++-------------+-------+
+| Fridge      |   100 |
+| Laptop      |   500 |
+| ply sheets  |   800 |
+| chair       |  1000 |
+| wire cables |  1800 |
+| Laptop      |   900 |
+| tv          | 10010 |
+| cloth       |  7500 |
++-------------+-------+
+/******************************************************************/
+
+ 
+9. Display all the Project names and City, which has bought more than 500 Parts. 
+
+mysql> select jname , city from projects p , spj s where qty>500 and s
+.j = p.j;
++---------+-----------+
+| jname   | city      |
++---------+-----------+
+| solar   | london    |
+| Samsung | anthens   |
+| apple   | paris     |
+| apple   | paris     |
+| amazon  | san jones |
+| amazon  | san jones |
++---------+-----------+
+/*****************************************************************/
+
+ 
+10. Display all the Part names and Quantity sold that have a Weight less than 15. 
+ mysql> select pname , qty from parts , spj where weight<15 and parts.p = spj
+.p;
+Empty set (0.00 sec)
+
+
+11. Display all the Employee names and the name of their Managers.
+
+
+

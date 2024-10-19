@@ -1,0 +1,154 @@
+SQL Exercise 3 
+
+
+
+1. Display all the Supplier names with the initial letter capital. 
+
+mysql> select CONCAT(UCASE(SUBSTRING(sname, 1, 1)), LOWER(SUBSTRING(sname, 2
+))) from supplier;
++-------------------------------------------------------------------+
+| CONCAT(UCASE(SUBSTRING(sname, 1, 1)), LOWER(SUBSTRING(sname, 2))) |
++-------------------------------------------------------------------+
+| King                                                              |
+| Bob                                                               |
+| Enna                                                              |
+| Black                                                             |
+| Suzi                                                              |
++-------------------------------------------------------------------+
+or
+
+mysql> select CONCAT(Upper(SUBSTRING(sname, 1, 1)), LOWER(SUBSTRING(sname, 2))) as Captial from supplier;
++---------+
+| Captial |
++---------+
+| King    |
+| Bob     |
+| Enna    |
+| Black   |
+| Suzi    |
++---------+
+
+ /*****************************************************************/
+
+2. Display all the Supplier names in upper case. 
+
+mysql> select upper(sname) from supplier;
++--------------+
+| upper(sname) |
++--------------+
+| KING         |
+| BOB          |
+| ENNA         |
+| BLACK        |
+| SUZI         |
++--------------+
+/*************************************/
+ 
+3. Display all the Supplier names in lower case. 
+
+mysql> select lower(sname) from supplier;
++--------------+
+| lower(sname) |
++--------------+
+| king         |
+| bob          |
+| enna         |
+| black        |
+| suzi         |
++--------------+
+
+ /*****************************************************/
+
+4. Display all the Supplier names padded to 25 characters, with spaces on the left. 
+
+mysql> select lpad(sname,25,' ') from supplier;
++---------------------------+
+| lpad(sname,25,' ')        |
++---------------------------+
+|                      King |
+|                       bob |
+|                      Enna |
+|                     black |
+|                      suzi |
++---------------------------+
+/****************************************************/
+
+ 
+5. Display all the Supplier names (with ‘la’ replaced by ‘ro’). 
+
+ HINT: REPLACE. 
+ 
+mysql> select replace(sname,'la','ro') from supplier;
++--------------------------+
+| replace(sname,'la','ro') |
++--------------------------+
+| King                     |
+| bob                      |
+| Enna                     |
+| "brock"                  |
+| suzi                     |
++--------------------------+
+
+/************************************************/
+
+
+6. Implement the above command such that ‘l’ is replaced with ‘r’ and ‘a’ is replaced
+with ‘o’. 
+
+
+mysql> select replace (replace(sname,'l','r'),'a','o') from supplier;
++------------------------------------------+
+| replace (replace(sname,'l','r'),'a','o') |
++------------------------------------------+
+| King                                     |
+| bob                                      |
+| Enno                                     |
+| brock                                    |
+| suzi                                     |
++------------------------------------------+
+
+
+/******************************************/
+ 
+7. Display the Supplier names and the lengths of the names. 
+
+mysql> select length (sname) from supplier;
++----------------+
+| length (sname) |
++----------------+
+|              4 |
+|              3 |
+|              4 |
+|              5 |
+|              4 |
++----------------+
+/***********************************************/
+ 
+8. Use the soundex function to search for a supplier by the name of ‘BLOKE’. 
+
+mysql> select * from supplier where soundex (sname ) = soundex('BLOKE');
++------+-------+--------+---------+
+| S    | Sname | Status | city    |
++------+-------+--------+---------+
+| s4   | black |     50 | Anthens |
++------+-------+--------+---------+
+
+
+/*********************************/
+9. Display the Supplier name and the status (as Ten, Twenty, Thirty, etc.). 
+
+
+
+
+ 
+10. Display the current day (e.g. Thursday).
+
+mysql> select dayname(curdate());
++--------------------+
+| dayname(curdate()) |
++--------------------+
+| Saturday           |
++--------------------+
+
+
+/*************************************************************/

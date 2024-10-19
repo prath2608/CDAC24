@@ -1,0 +1,107 @@
+SQL Exercise 4 
+1. Display the minimum Status in the Supplier table. 
+mysql> select min(status) from supplier;
++-------------+
+| min(status) |
++-------------+
+|          10 |
++-------------+
+/****************************************/
+ 
+2. Display the maximum Weight in the Parts table. 
+
+mysql> select max(status) from supplier;
++-------------+
+| max(status) |
++-------------+
+|          50 |
++-------------+
+
+/************************************/
+ 
+3. Display the average Weight of the Parts. 
+
+mysql> select avg(weight) from parts;
++-------------+
+| avg(weight) |
++-------------+
+|       637.5 |
++-------------+
+
+/***************************************/
+ 
+4. Display the total Quantity sold for part ‘P1’. 
+mysql> select sum(qty) from spj where p = 'p1';
++----------+
+| sum(qty) |
++----------+
+|      100 |
++----------+
+/*************************************/ 
+5. Display the total Quantity sold for each part. 
+
+
+6. Display the average Quantity sold for each part. 
+ mysql> select avg(qty) from spj;
++-----------+
+| avg(qty)  |
++-----------+
+| 2826.2500 |
++-----------+
+
+/**************************************/
+ 
+7. Display the maximum Quantity sold for each part, provided the maximum Quantity 
+is greater than 800. 
+
+mysql> select * from spj where qty>800;
++------+------+------+-------+
+| S    | P    | J    | QTY   |
++------+------+------+-------+
+| s4   | p7   | j3   |  1000 |
+| s2   | p4   | j1   |  1800 |
+| s1   | p3   | j2   |   900 |
+| s5   | p6   | j5   | 10010 |
+| s3   | p8   | j2   |  7500 |
++------+------+------+-------+
+
+/**************************************/ 
+
+
+
+8. Display the Status and the count of Suppliers with that Status. 
+mysql> select count(s) from supplier;
++----------+
+| count(s) |
++----------+
+|        5 |
++----------+
+/***************************************/
+
+ 
+9. Display the count of Projects going on in different cities. 
+
+mysql> select count(j) from projects;
++----------+
+| count(j) |
++----------+
+|        5 |
++----------+
+
+/************************************/
+
+
+10. What is the difference between COUNT(Status) and COUNT(*) ? 
+
+COUNT(Status) =>> count only non-null value;
+
+COUNT(*) =>> count null value as well as non-null value;
+/**********************************************/
+ 
+11. Display the Status and the Count of Suppliers with that Status in the following format 
+as shown below:- 
+ 
+Status Count 
+Ten 1 
+Twenty 2 
+Thirty 3
